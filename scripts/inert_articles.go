@@ -1,15 +1,14 @@
 package main
 
 import (
-	"net/http"
-	"io"
 	"encoding/json"
-	"log"
-	"gorm.io/gorm"
-	"gorm.io/driver/mysql"
 	"go-api-sample/models"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
+	"io"
+	"log"
+	"net/http"
 )
-
 
 func main() {
 	// NewsAPI の APIにリクエストして chatCPTに関すニュースを取得する
@@ -20,7 +19,7 @@ func main() {
 	res, _ := client.Do(req)
 
 	defer res.Body.Close()
-	
+
 	body, _ := io.ReadAll(res.Body)
 
 	// JSONを構造体にエンコード
@@ -35,11 +34,11 @@ func main() {
 
 	for _, v := range response["articles"] {
 		article := models.Article{
-			Title: v["title"],
-			Description: v["description"],
-			Content: v["content"],
-			ArticleUrl: v["url"],
-			ImageUrl: v["urlToImage"],
+			Title:        v["title"],
+			Description:  v["description"],
+			Content:      v["content"],
+			ArticleUrl:   v["url"],
+			ImageUrl:     v["urlToImage"],
 			ResourceName: v["author"],
 		}
 
