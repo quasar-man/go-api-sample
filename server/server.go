@@ -5,7 +5,7 @@ import (
 	"go-api-sample/controllers"
 )
 
-type Server struct {}
+type Server struct{}
 
 // routing の定義を追加する
 func ServerStart() {

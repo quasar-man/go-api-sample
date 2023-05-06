@@ -1,19 +1,19 @@
 package controllers
 
 import (
-	"net/http"
-	"gorm.io/gorm"
 	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
+	"net/http"
 
-	"go-api-sample/models"
-	"github.com/labstack/echo/v4"
-	"strconv"
-	"log"
 	"fmt"
+	"github.com/labstack/echo/v4"
+	"go-api-sample/models"
+	"log"
 	"os"
+	"strconv"
 )
 
-type ArticleController struct {}
+type ArticleController struct{}
 
 func NewArticleController() *ArticleController {
 	return &ArticleController{}
@@ -35,7 +35,7 @@ func (ac *ArticleController) GetArticles(c echo.Context) error {
 	if err != nil {
 		pageCount = 10
 	}
-	
+
 	db.Limit(pageCount).Offset(pageCount * (page - 1)).Find(&articles)
 
 	return c.JSON(http.StatusOK, articles)
