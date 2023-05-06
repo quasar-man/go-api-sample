@@ -8,12 +8,20 @@ services:
     tty: true
     volumes:
       - .:/app
+    environment:
+      MYSQL_DATABASE: news_article
+      MYSQL_HOST: go_api_mysql
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    depends_on:
+      - mysql
   mysql:
     image: mysql:8.0.33
     container_name: go_api_mysql
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: news_article
+      MYSQL_HOST: go_api_mysql
       MYSQL_USER: user
       MYSQL_PASSWORD: password
       TZ: 'Asia/Tokyo'
